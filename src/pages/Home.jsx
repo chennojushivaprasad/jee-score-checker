@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Header from "../components/layout/Header.jsx";
 import UploadBox from "../components/upload/UploadBox.jsx";
+import { useNavigate } from "react-router-dom";
+import { PdfContext } from "../context/PdfContext.jsx";
+
 
 function Home() {
-  const [responsePdf, setResponsePdf] = useState(null);
-  const [answerPdf, setAnswerPdf] = useState(null);
+  const { setResponsePdf, setAnswerPdf, responsePdf, answerPdf } =
+    useContext(PdfContext);
+
+  const navigate = useNavigate();
+
 
   return (
     <>
@@ -97,6 +103,25 @@ function Home() {
               )}
             </aside>
           )}
+
+          {responsePdf && answerPdf && (
+            <button
+              onClick={() => navigate("/result")}
+              style={{
+                marginTop: "24px",
+                padding: "12px 24px",
+                background: "#2563eb",
+                color: "white",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+                fontSize: "15px",
+              }}
+            >
+              Check
+            </button>
+          )}
+
         </section>
       </main>
     </>

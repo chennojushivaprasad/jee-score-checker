@@ -9,6 +9,7 @@ function Navbar() {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "15px 40px",
+        boxSizing:"border-box",
         backgroundColor: "#1e40af",
         color: "#fff",
       }}
