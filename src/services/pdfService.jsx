@@ -13,7 +13,7 @@ export const loadPdf = async (buffer) => {
 export const extractPdfItems = async (pdf) => {
   const allItems = [];
 
-  for (let i = 1; i < pdf.numPages; i++) {
+  for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i);
     const content = await page.getTextContent();
 

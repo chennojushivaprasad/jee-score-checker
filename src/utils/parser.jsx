@@ -10,11 +10,30 @@ export const findAnswerKeyHeaderRow = (text) => {
   return text.str === "Option(s) ID claimed";
 };
 
+const normalizeAnswerKeyRow = (row) => {
+  const isMCQ = Array.isArray(row[4]);
+
+  return {
+    sl: row[0] ?? null,
+
+    section: row[1] ?? "",
+
+    questionId: row[2] ?? null,
+
+    isMCQ,
+
+    correctAnswer:
+      typeof row[3] === "string"
+        ? Number(row[3].replace("answer :", "").trim())
+        : row[3] ?? null,
+
+    options: isMCQ ? row[4] : [],
+  };
+};
+
 
 export const parseAnswerKeyRow = (row, text, colIndex) => {
   let rowCompleted = false;
-
-  console.log(text)
 
   switch (colIndex) {
     // Serial No
@@ -85,8 +104,6 @@ export const parseAnswerKeyRow = (row, text, colIndex) => {
   };
 };
 
-
-
 export const buildAnsweKeyTableFromItems = (items) => {
   const table = [];
 
@@ -123,15 +140,14 @@ export const buildAnsweKeyTableFromItems = (items) => {
       const status = parseAnswerKeyRow(row, value, row.length);
 
       if (status.newRowStarted && !status.rowCompleted) {
-        table.push(row);
-
+        table.push(normalizeAnswerKeyRow(row));
         row = [];
         parseAnswerKeyRow(row, value, row.length);
         rowStarted = true;
       }
 
       if (status.rowCompleted) {
-        table.push(row);
+        table.push(normalizeAnswerKeyRow(row));
         row = [];
         rowStarted = false;
       }
@@ -140,7 +156,7 @@ export const buildAnsweKeyTableFromItems = (items) => {
 
   // Push last row
   if (row.length > 0) {
-    table.push(row);
+    table.push(normalizeAnswerKeyRow(row));
   }
 
   return table;
