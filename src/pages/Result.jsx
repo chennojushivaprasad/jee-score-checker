@@ -5,6 +5,8 @@ import {
   useMemo,
 } from "react";
 
+import { useNavigate } from "react-router-dom"
+
 import { PdfContext } from "../context/PdfContext";
 import { loadPdf, extractPdfItems } from "../services/pdfService";
 import {
@@ -30,7 +32,7 @@ function Result() {
 
   const [sortOrder, setSortOrder] = useState("default");
   const [statusFilter, setStatusFilter] = useState("all");
-
+  const navigate = useNavigate()
   /* ===================== HELPERS ===================== */
   const isFilterActive =
     statusFilter !== "all" || sortOrder !== "default";
@@ -58,7 +60,7 @@ function Result() {
 
   /* ===================== LOAD PDFS ===================== */
   useEffect(() => {
-    if (!answerPdf || !responsePdf) return;
+    if (!answerPdf || !responsePdf) return navigate("/");
 
     const run = async () => {
       setLoading(true);

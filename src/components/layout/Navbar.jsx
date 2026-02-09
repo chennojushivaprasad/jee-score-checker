@@ -14,7 +14,7 @@ function Navbar() {
         color: "#fff",
       }}
     >
-      <h3>JEE Score Tool</h3>
+       <Link to="/" style={linkStyle}><h3>JEE Score Tool</h3></Link>
 
       <div style={{ display: "flex", gap: "20px" }}>
         <Link to="/" style={linkStyle}>Home</Link>
