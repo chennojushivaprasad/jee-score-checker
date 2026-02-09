@@ -7,7 +7,7 @@ import {
 
 import { useNavigate } from "react-router-dom"
 
-import { PdfContext } from "../context/PdfContext";
+import { ExamDataContext } from "../context/ExamDataContext";
 import { loadPdf, extractPdfItems } from "../services/pdfService";
 import {
   buildAnsweKeyTableFromItems,
@@ -19,7 +19,7 @@ import ResultSummary from "../components/result/ResultSummary";
 import ResultTable from "../components/result/ResultTable";
 
 function Result() {
-  const { answerPdf, responsePdf } = useContext(PdfContext);
+  const { answerPdf, responsePdf } = useContext(ExamDataContext);
 
   /* ===================== STATES ===================== */
   const [answerKeyData, setAnswerKeyData] = useState([]);

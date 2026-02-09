@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/layout/Navbar.jsx"
-import Home from "./pages/Home.jsx";
+import Home from "./pages/home/Home.jsx";
 import About from "./pages/About.jsx";
 import Result from "./pages/Result.jsx";
 import Privacy from "./pages/Privacy.jsx";
