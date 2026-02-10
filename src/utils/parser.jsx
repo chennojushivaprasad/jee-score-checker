@@ -262,6 +262,106 @@ export const buildCandiateResponseTableFromItems = (items) => {
     }
 
   })
-
   return table
+}
+
+
+function getCandidateDetailsFromTable(table) {
+  const details = {};
+
+  table.querySelectorAll("tr").forEach(row => {
+    const cells = row.querySelectorAll("td, th");
+    if (cells.length >= 2) {
+      const key = cells[0].innerText.trim();
+      const value = cells[1].innerText.trim();
+      details[key] = value;
+    }
+  });
+
+  return details;
+}
+
+function extractQuestionData(tableElement) {
+  const data = {
+    questionNumber: null,
+    questionImage: null,
+    options: []
+  };
+
+  // Question number
+  const qNumberCell = tableElement.querySelector('td.bold');
+  if (qNumberCell) {
+    data.questionNumber = qNumberCell.textContent.trim();
+  }
+
+  // Question image
+  const questionImg = tableElement.querySelector('td.bold img');
+  if (questionImg) {
+    data.questionImage = questionImg.getAttribute('src');
+  }
+
+  // Option rows (images inside option section)
+  const optionRows = tableElement.querySelectorAll('tr td img');
+
+  optionRows.forEach((img, index) => {
+    // Skip first image (question image)
+    if (index === 0) return;
+
+    data.options.push({
+      optionNumber: index,
+      image: img.getAttribute('src')
+    });
+  });
+
+  return data;
+}
+
+function extractMetaData(tableElement) {
+  const data = {};
+
+  const rows = tableElement.querySelectorAll('tr');
+
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('td');
+    if (cells.length === 2) {
+      const key = cells[0].textContent
+        .replace(':', '')
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '_');
+
+      const value = cells[1].textContent.trim();
+
+      data[key] = value;
+    }
+  });
+
+  return data;
+}
+
+const extractFullQuestion = (questionTable, metaTable) => ({
+  question: extractQuestionData(questionTable),
+  meta: extractMetaData(metaTable)
+});
+
+
+export function parseJeeResponseHtml(htmlString) {
+  const parser = new DOMParser();
+
+  const doc = parser.parseFromString(htmlString, "text/html");
+
+
+  const candidateDetails = getCandidateDetailsFromTable(doc.getElementsByTagName("table")[0])
+
+  // // Each question is usually in a table or div block
+  const questionBlocks = Array.from(doc.querySelectorAll(".questionPnlTbl .rw"));
+
+  const questions = questionBlocks.map((element) => {
+    const row = element.children
+    const questionTb1 = row[0]
+    const questionInfo = row[1]
+    return extractFullQuestion(questionTb1, questionInfo)
+  })
+
+  return {questions,candidateDetails};
 }

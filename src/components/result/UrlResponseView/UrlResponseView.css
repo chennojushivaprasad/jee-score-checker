@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+:root {
+  --bg-app: #1e293b;
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  
+  --primary: #6366f1;
+  --primary-glow: rgba(99, 102, 241, 0.3);
+  
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.2);
+  
+  --danger: #f43f5e;
+  --danger-glow: rgba(244, 63, 94, 0.2);
+  
+  --text-main: #f8fafc;
+  --text-dim: #94a3b8;
+}
+
+.analysis-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-app);
+}
+
+.analysis-heading {
+  font-weight: 800;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(to right, #fff, var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.analysis-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text-primary);
+
+  /* 🔥 Improved background */
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(59, 130, 246, 0.08),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #020617, #020617);
+
+  min-height: 100vh;
+}
+
+
+/* --- THE GLASS HEADER --- */
+.result-header {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1.5fr;
+  gap: 2rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background glow for header */
+.result-header::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 150px; height: 150px;
+  background: var(--primary-glow);
+  filter: blur(80px);
+  z-index: 0;
+}
+
+.candidate-box { position: relative; z-index: 1; display: flex; gap: 1.5rem; align-items: center; }
+
+.avatar {
+  width: 70px; height: 70px;
+  background: linear-gradient(135deg, var(--primary), #a855f7);
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; font-weight: 800;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.candidate-info h3 { font-size: 1.4rem; margin: 0 0 8px 0; letter-spacing: -0.5px; }
+.candidate-info p { font-size: 0.9rem; color: var(--text-dim); margin: 2px 0; }
+
+/* Score Section */
+.score-box {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center;
+  border-left: 1px solid var(--glass-border);
+  border-right: 1px solid var(--glass-border);
+}
+
+.score-circle {
+  width: 110px; height: 110px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border: 2px solid var(--glass-border);
+  border-top: 2px solid var(--primary);
+  border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.score-value { font-size: 2.2rem; font-weight: 800; line-height: 1; }
+.score-label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; margin-top: 4px; }
+
+/* Stats grid */
+.stats-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.summary-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  transition: transform 0.2s ease;
+}
+
+.summary-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.05); }
+.summary-card.success { border-bottom: 3px solid var(--success); }
+.summary-card.danger { border-bottom: 3px solid var(--danger); }
+
+.summary-label { font-size: 0.7rem; color: var(--text-dim); display: block; margin-bottom: 4px; }
+.summary-value { font-size: 1.2rem; font-weight: 700; }
+
+/* --- QUESTION CARDS --- */
+.question-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 25px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.question-card:hover {
+  border-color: rgba(255,255,255,0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+}
+
+.badge {
+  padding: 6px 16px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Image styling */
+.question-image, .option-img {
+  background: #fff; /* Keeping background white for legibility of diagrams */
+  padding: 12px;
+  border-radius: 12px;
+  max-width: 100%;
+  margin: 15px 0;
+  display: block;
+}
+
+/* Options */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 15px;
+}
+
+.option-item {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid var(--glass-border);
+  padding: 15px;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+}
+
+.correct-border {
+  border: 1px solid var(--success) !important;
+  box-shadow: 0 0 15px var(--success-glow);
+  background: var(--success-light);
+}
+
+.wrong-border {
+  border: 1px solid var(--danger) !important;
+  box-shadow: 0 0 15px var(--danger-glow);
+  background: var(--danger-light);
+}
+
+.option-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Footer info */
+.footer-marks {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+/* Responsive Fixes */
+@media (max-width: 900px) {
+  .result-header { grid-template-columns: 1fr; }
+  .score-box { border: none; padding: 20px 0; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+  .stats-box { grid-template-columns: repeat(2, 1fr); }
+}

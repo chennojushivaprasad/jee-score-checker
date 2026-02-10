@@ -1,0 +1,237 @@
+/* ===============================
+   PDF RESPONSE VIEW
+================================ */
+
+.pdf-page {
+  min-height: 100vh;
+  padding: 32px;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--text-main);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ===============================
+   GLASS SECTION
+================================ */
+
+.pdf-section {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* ===============================
+   HEADINGS
+================================ */
+
+.pdf-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 24px 0 18px;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 10px;
+}
+
+/* ===============================
+   TABLE WRAPPER
+================================ */
+
+.table-wrapper {
+  margin-top: 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+}
+
+/* ===============================
+   FILTER / SORT CONTROLS
+================================ */
+
+.table-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 20px 0 10px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control-group label {
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.control-group select {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  min-width: 160px;
+}
+
+/* ===============================
+   RESET BUTTON
+================================ */
+
+.reset-group {
+  justify-content: flex-end;
+}
+
+.reset-btn {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  background: transparent;
+  color: var(--text-main);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.reset-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.reset-btn:not(:disabled):hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: var(--primary);
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+
+.empty-card {
+  max-width: 420px;
+  margin: 10vh auto;
+  padding: 40px;
+  background: var(--glass-bg);
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.empty-card p {
+  color: var(--text-dim);
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.empty-card button {
+  padding: 12px 22px;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    rgba(99, 102, 241, 0.85)
+  );
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 18px var(--primary-glow);
+}
+
+.empty-card button:hover {
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1024px) {
+  .pdf-page {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pdf-page {
+    padding: 16px;
+    font-size: 15px;
+  }
+
+  .pdf-section {
+    padding: 16px;
+  }
+
+  .pdf-heading {
+    font-size: 18px;
+  }
+
+  .table-controls {
+    flex-direction: column;
+  }
+
+  .control-group select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .pdf-heading {
+    font-size: 17px;
+  }
+
+  .empty-card {
+    padding: 28px;
+  }
+}
+
+/* ===============================
+   PRINT / PDF OPTIMIZATION
+================================ */
+
+@media print {
+  .pdf-page {
+    background: white;
+    color: black;
+    padding: 0;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .pdf-section {
+    background: white;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+
+  .pdf-heading {
+    color: black;
+    font-size: 19px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .table-wrapper {
+    background: white;
+    border: none;
+  }
+
+  .table-controls,
+  .reset-btn,
+  .reset-group {
+    display: none;
+  }
+}

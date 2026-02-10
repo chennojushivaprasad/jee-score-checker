@@ -41,7 +41,7 @@ function Home() {
   };
 
   const isReady = answerPdf && (responsePdf || responseUrl);
-
+  
   return (
     <main className="home-container">
       <section className="content-wrapper">
@@ -89,11 +89,7 @@ function Home() {
               <label style={{ fontWeight: "600", marginBottom: "12px" }}>Upload PDF</label>
               <UploadBox
                 label="Select PDF"
-                onFileSelect={(file) => {
-                  setResponsePdf(file);
-                  setResponseUrl(null);
-                  setUrlInput("");
-                }}
+                onFileSelect={setResponsePdf}
                 active={!!responsePdf}
               />
               <p className="helper-text">

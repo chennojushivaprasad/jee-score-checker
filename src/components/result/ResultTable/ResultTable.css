@@ -1,0 +1,179 @@
+/* ===============================
+   RESULT TABLE
+================================ */
+
+.result-table-wrapper {
+  margin-top: 20px;
+  overflow-x: auto; /* scroll horizontally if needed */
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--glass-border);
+  padding: 8px; /* small padding so scrollbar doesn't overlap */
+}
+
+/* Table */
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px; /* will shrink on smaller screens */
+  color: var(--text-main);
+  font-size: 15px; /* slightly bigger for readability */
+}
+
+/* Header */
+.result-table thead {
+  background: rgba(30, 41, 59, 0.95);
+}
+
+.result-table th {
+  padding: 14px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;  /* make header sticky */
+  top: 0;
+  z-index: 2;
+}
+
+/* Body rows */
+.result-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid var(--glass-border);
+  font-size: 15px;
+}
+
+.result-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.08);
+}
+
+/* Last row border fix */
+.result-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===============================
+   STATUS PILL
+================================ */
+
+.status {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  display: inline-block;
+  min-width: 70px;
+  text-align: center;
+}
+
+/* Variants */
+.status.correct {
+  color: var(--success);
+  background: rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 12px var(--success-glow);
+}
+
+.status.wrong {
+  color: var(--danger);
+  background: rgba(244, 63, 94, 0.15);
+  box-shadow: 0 0 12px var(--danger-glow);
+}
+
+.status.skipped {
+  color: #eab308;
+  background: rgba(234, 179, 8, 0.15);
+}
+
+/* ===============================
+   SPECIAL CELLS
+================================ */
+
+.mono {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.marks {
+  font-weight: 600;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1024px) {
+  .result-table {
+    min-width: 650px;
+  }
+
+  .result-table th,
+  .result-table td {
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .result-table-wrapper {
+    padding: 4px;
+  }
+
+  .result-table {
+    min-width: 600px;
+  }
+
+  .result-table th,
+  .result-table td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .result-table {
+    min-width: 500px; /* small devices scroll horizontally */
+    font-size: 12px;
+  }
+
+  .result-table th,
+  .result-table td {
+    padding: 8px 6px;
+  }
+
+  .status {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
+/* ===============================
+   PRINT / PDF
+================================ */
+
+@media print {
+  .result-table-wrapper {
+    background: white;
+    border: none;
+    overflow: visible; /* remove scroll for print */
+  }
+
+  .result-table {
+    color: black;
+    font-size: 15px;
+    min-width: auto;
+  }
+
+  .result-table thead {
+    background: #f5f5f5;
+    position: static; /* remove sticky for print */
+  }
+
+  .status {
+    box-shadow: none;
+  }
+}
