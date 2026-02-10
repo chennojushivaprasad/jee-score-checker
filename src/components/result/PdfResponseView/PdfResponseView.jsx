@@ -5,25 +5,11 @@ import "./PdfResponseView.css";
 
 function PdfResponseView({ results, data }) {
   const [statusFilter, setStatusFilter] = useState("all");
-  const [sortOrder, setSortOrder] = useState("desc");
-
-  if (!data?.length) {
-    return <p>No response data found.</p>;
-  }
-
-  if (!results?.length) {
-    return (
-      <main className="pdf-page">
-        <div className="empty-card">
-          <p>⚠️ No result data available</p>
-          <button onClick={() => navigate("/")}>Go Back</button>
-        </div>
-      </main>
-    );
-  }
+  const [sortOrder, setSortOrder] = useState("default");
 
   const filteredResults = useMemo(() => {
-    let list = [...results];
+    let list = [...results || []];
+
     // FILTER
     if (statusFilter !== "all") {
       list = list.filter((q) => q.status === statusFilter);
@@ -49,9 +35,22 @@ function PdfResponseView({ results, data }) {
     setSortOrder("default");
   };
 
+  const isFiltered = statusFilter !== "all" || sortOrder !== "default";
 
-  const isFiltered =
-    statusFilter !== "all" || sortOrder !== "default";
+  if (!data?.length) {
+    return <p>No response data found.</p>;
+  }
+
+  if (!results?.length) {
+    return (
+      <main className="pdf-page">
+        <div className="empty-card">
+          <p>⚠️ No result data available</p>
+          <button onClick={() => navigate("/")}>Go Back</button>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="pdf-page">
@@ -84,7 +83,6 @@ function PdfResponseView({ results, data }) {
               <option value="desc">Marks: High → Low</option>
               <option value="asc">Marks: Low → High</option>
             </select>
-
           </div>
 
           {/* RESET */}
@@ -108,5 +106,6 @@ function PdfResponseView({ results, data }) {
     </main>
   );
 }
+
 
 export default PdfResponseView;

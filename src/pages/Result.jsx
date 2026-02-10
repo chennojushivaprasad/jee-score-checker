@@ -10,11 +10,6 @@ import { loadResponseFromUrl } from "../services/responseUrl.service";
 import { mergeAnswerAndResponse } from "../utils/mergeResults";
 import ResponseSection from "../components/result/ResponseSection";
 
-import ResultTable from "../components/result/ResultTable"
-import ResultSummary from "../components/result/ResultSummary";
-
-
-
 function Result() {
   const {
     answerPdf,
@@ -144,16 +139,6 @@ const section = {
   marginBottom: "40px",
 };
 
-const heading = {
-  marginBottom: "16px",
-};
-
-const tableWrapper = {
-  overflowX: "auto",
-  border: "1px solid #1e293b",
-  borderRadius: "12px",
-};
-
 const loaderCard = {
   maxWidth: "420px",
   margin: "100px auto",
@@ -179,11 +164,3 @@ const spinner = {
   margin: "0 auto",
 };
 
-const emptyCard = {
-  maxWidth: "420px",
-  margin: "100px auto",
-  padding: "24px",
-  textAlign: "center",
-  border: "1px solid #1e293b",
-  borderRadius: "12px",
-};
